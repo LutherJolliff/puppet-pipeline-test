@@ -19,6 +19,8 @@ pipeline {
                 sh 'apt update -y && apt upgrade -y'
                 sh 'apt install wget'
                 sh 'apt install curl'
+                sh 'apt-get install -y software-properties-common'
+                sh 'apt-get install -y python-software-properties'
                 sh 'curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add -'
                 sh 'add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"'
                 sh 'apt update -y'
