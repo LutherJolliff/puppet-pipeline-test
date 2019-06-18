@@ -1,0 +1,25 @@
+apiVersion: v1
+clusters:
+- cluster:
+    certificate-authority-data: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUN5RENDQWJDZ0F3SUJBZ0lCQURBTkJna3Foa2lHOXcwQkFRc0ZBREFWTVJNd0VRWURWUVFERXdwcmRXSmwKY201bGRHVnpNQjRYRFRFNU1EWXhPREUxTVRReE5sb1hEVEk1TURZeE5URTFNVFF4Tmxvd0ZURVRNQkVHQTFVRQpBeE1LYTNWaVpYSnVaWFJsY3pDQ0FTSXdEUVlKS29aSWh2Y05BUUVCQlFBRGdnRVBBRENDQVFvQ2dnRUJBTGk4Cng2WEU4aUxCTUVLRXhoTW9LczM3TzBuRk0wR2FrVFBsQXovMk9yVlcwNmJPYkMxQUh0R1JtR3NPR2xmYnFQUnUKSFliR3hWN21iT3RzbDlndGJWNlZkNWdYVEVnTHVERFhhWm9FNENSb0hHbUg0WVprM2Y0R2pFVnZ0eWo1Z3dOZgpTTzl1UGZHWVIwRjl3ekx5S01PaFNtOWVldWp2TjFDbHJ6bW1ESi9Eak9nb0FIZ1JNL0xSUzFxOGJZQzBPY1hkCk9nS3lPU3VYbVNlcGRkY2FOdEFQRnlJK0l5TFVUcm9VYVQ0YmVKREZBdnNiMnA1WHJ3NEhDQjBjcml1MWZYdDkKMjdhMFhKcFlIR0lGTlVkUldWVFh5MVdMYWplYXVoWGhEcDdlb0MvOEd0MjREOEw2MFpadXc2YmZtczIzb3RKOQorSWJMbFFtRFJyTGw5WExHVmw4Q0F3RUFBYU1qTUNFd0RnWURWUjBQQVFIL0JBUURBZ0trTUE4R0ExVWRFd0VCCi93UUZNQU1CQWY4d0RRWUpLb1pJaHZjTkFRRUxCUUFEZ2dFQkFEZXY2V0laMjl6ZTdQYVJLS2FHb003c3A1blkKNkdEOXlkSHF6MTQ0NXpKT0dDVGdZTzUwMm1zaHdNUnRaaGE1SFd2aitWU3JRZEU2NzF6K0lMNTZqQWdvL0xRMApmWDNwdUx3SXlpMzQ0anVKd2JHVk5NcHRRMkgycERKSEUza3Eyc1BCdk1CZ2sveWVRNm1zT29peEpXMW1QN0VGCnhEYVBqL1dCb25zbmZNeXFmY3hvN1Z6dXROUDg1UG5DNW1Sb0F3dzc5dU5BTHRGMytLY1B0REk3Z0lPUnRUNWoKckVRQUJDMDRBK2dLVHBxcld3d3REQWhVSUwyUjBwaEc2VGxHenlCVllCQXUzaDhlaGptM2IzN1g5VHJhNG5XVwpIazBSbFl2N29NTUtCZU5zalRIeHcrWC8wYU9mcW9iVWx4cWpqUVFxUkpFcEZqY3h0NG9GYU9rNEc4WT0KLS0tLS1FTkQgQ0VSVElGSUNBVEUtLS0tLQo=
+    server: https://17EC6D4E75AFB8F4331192DA30DCB442.yl4.us-east-1.eks.amazonaws.com
+  name: cynerge-cluster-6.us-east-1.eksctl.io
+contexts:
+- context:
+    cluster: cynerge-cluster-6.us-east-1.eksctl.io
+    user: ljoliff@cynerge-cluster-6.us-east-1.eksctl.io
+  name: ljoliff@cynerge-cluster-6.us-east-1.eksctl.io
+current-context: ljoliff@cynerge-cluster-6.us-east-1.eksctl.io
+kind: Config
+preferences: {}
+users:
+- name: ljoliff@cynerge-cluster-6.us-east-1.eksctl.io
+  user:
+    exec:
+      apiVersion: client.authentication.k8s.io/v1alpha1
+      args:
+      - token
+      - -i
+      - cynerge-cluster-6
+      command: aws-iam-authenticator
+      env: null

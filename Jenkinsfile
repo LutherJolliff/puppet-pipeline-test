@@ -1,7 +1,11 @@
 #!/usr/bin/env groovy
 
 pipeline {
-
+    environment {
+        registry = "luther007/jenkins-eks-automated"
+        registryCredential = 'dockerhub'
+        dockerImage = ''
+    }
     agent {
         docker {
             image 'node'
@@ -19,9 +23,9 @@ pipeline {
                 sh 'apt install -y ./google-chrome*.deb'
             }
         }
-        stage('Build') {
+        stage('Dependencies') {
             steps {
-                echo 'Building...'
+                echo 'Installing...'
                 sh 'npm install'
             }
         }
@@ -31,28 +35,49 @@ pipeline {
                 sh 'npm test'
             }
         }
-    }
-}
-
-node {
-    def app
-
-    stage('Clone repository') {
-        /* Let's make sure we have the repository cloned to our workspace */
-        checkout scm
-    }
-
-    stage('Build image') {
-        /* This builds the actual image; synonymous to
-         * docker build on the command line */
-
-        app = docker.build("luther007/jenkins-eks-automated")
-    }
-
-    stage('Push') {
-        docker.withRegistry('https://registry.hub.docker.com', 'docker-hub-credentials') {
-            app.push("${env.BUILD_NUMBER}")
-            app.push("latest")
+        stage('Build') {
+            steps {
+                script {
+                    dockerImage = docker.build registry + ":BUILD_NUMBER"
+                }
+            }
+        }
+        stage('Deploy') {
+            steps {
+                script {
+                    docker.withRegistry( '', registryCredential ) {
+                    dockerImage.push()
+                    }
+                }
+            }
+        }
+        stage('Remove Unused docker image') {
+            steps{
+                sh "docker rmi $registry:$BUILD_NUMBER"
+            }
         }
     }
 }
+
+// node {
+//     def app
+
+//     stage('Clone repository') {
+//         /* Let's make sure we have the repository cloned to our workspace */
+//         checkout scm
+//     }
+
+//     stage('Build image') {
+//         /* This builds the actual image; synonymous to
+//          * docker build on the command line */
+
+//         app = docker.build("luther007/jenkins-eks-automated")
+//     }
+
+//     stage('Push') {
+//         docker.withRegistry('https://registry.hub.docker.com', 'docker-hub-credentials') {
+//             app.push("${env.BUILD_NUMBER}")
+//             app.push("latest")
+//         }
+//     }
+// }
