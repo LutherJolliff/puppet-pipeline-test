@@ -5,6 +5,8 @@ pipeline {
         registry = "luther007/jenkins-eks-automated"
         registryCredential = 'docker-hub-credentials'
         dockerImage = ''
+        AWS_ACCESS_KEY_ID     = credentials('JenkinsAWSKey')
+        AWS_SECRET_ACCESS_KEY = credentials('JenkinsAWSKeySecret')
     }
 
     agent {
@@ -76,8 +78,8 @@ pipeline {
                 sh 'chmod +x ./aws-iam-authenticator'
                 sh 'mkdir -p $HOME/bin && cp ./aws-iam-authenticator $HOME/bin/aws-iam-authenticator && export PATH=$HOME/bin:$PATH'
                 sh 'echo export PATH=$HOME/bin:$PATH >> ~/.bashrc'
-                sh "export AWS_ACCESS_KEY_ID=$JenkinsAWSKey"
-                sh "export AWS_SECRET_ACCESS_KEY=$JenkinsAWSKeySecret"
+                sh "export AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID"
+                sh "export AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY"
                 sh 'kubectl create -f Deployment.yml'
             }
         }
