@@ -20,7 +20,7 @@ pipeline {
                 sh 'apt update -y && apt upgrade -y'
                 sh 'apt install wget'
                 sh 'apt install curl'
-                sh 'apt install apt-transport-https ca-certificates curl software-properties-common'
+                sh 'apt install -y apt-transport-https ca-certificates curl software-properties-common'
                 sh 'curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add -'
                 sh 'add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable"'
                 sh 'apt update -y'
