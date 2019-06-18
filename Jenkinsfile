@@ -6,14 +6,13 @@ pipeline {
         registryCredential = 'dockerhub'
         dockerImage = ''
     }
-    agent any
-    tools {nodejs "node" }
-    // agent {
-    //     docker {
-    //         image 'node'
-    //         args '-u root'
-    //     }
-    // }
+
+    agent {
+        docker {
+            image 'node'
+            args '-u root'
+        }
+    }
 
     stages {
         stage('Install') {
@@ -21,12 +20,12 @@ pipeline {
                 sh 'apt update -y && apt upgrade -y'
                 sh 'apt install wget'
                 sh 'apt install curl'
-                sh 'apt-get install -y software-properties-common'
-                // sh 'curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add -'
-                // sh 'add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"'
+                sh 'apt install apt-transport-https ca-certificates curl software-properties-common'
+                sh 'curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add -'
+                sh 'add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable"'
                 sh 'apt update -y'
                 sh 'apt-cache policy docker-ce'
-                // sh 'apt-get install -y docker-ce'
+                sh 'apt install -y docker-ce'
                 sh 'apt-get install -y libxss1 libappindicator1 libindicator7'
                 sh 'wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb'
                 sh 'apt install -y ./google-chrome*.deb'
