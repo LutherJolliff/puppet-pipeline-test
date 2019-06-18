@@ -3,7 +3,7 @@
 pipeline {
     environment {
         registry = "luther007/jenkins-eks-automated"
-        registryCredential = 'dockerhub'
+        registryCredential = 'docker-hub-credentials'
         dockerImage = ''
     }
 
