@@ -72,6 +72,8 @@ pipeline {
         stage('Deploy Kube') {
             environment {
                 PATH = "/root/bin:${env.PATH}"
+                PATH = '/root/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
+                PATH = "/root/bin:$PATH"
             }
             steps {
                 sh 'curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add -'
