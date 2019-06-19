@@ -33,39 +33,39 @@ pipeline {
                 sh 'apt install -y ./google-chrome*.deb'
             }
         }
-        stage('Dependencies') {
-            steps {
-                echo 'Installing...'
-                sh 'npm install'
-            }
-        }
-        stage('Test') {
-            steps {
-                echo 'Testing...'
-                sh 'npm test'
-            }
-        }
-        stage('Build') {
-            steps {
-                script {
-                    dockerImage = docker.build registry + ":$BUILD_NUMBER"
-                }
-            }
-        }
-        stage('Deploy') {
-            steps {
-                script {
-                    docker.withRegistry( '', registryCredential ) {
-                    dockerImage.push()
-                    }
-                }
-            }
-        }
-        stage('Remove Unused docker image') {
-            steps{
-                sh "docker rmi $registry:$BUILD_NUMBER"
-            }
-        }
+        // stage('Dependencies') {
+        //     steps {
+        //         echo 'Installing...'
+        //         sh 'npm install'
+        //     }
+        // }
+        // stage('Test') {
+        //     steps {
+        //         echo 'Testing...'
+        //         sh 'npm test'
+        //     }
+        // }
+        // stage('Build') {
+        //     steps {
+        //         script {
+        //             dockerImage = docker.build registry + ":$BUILD_NUMBER"
+        //         }
+        //     }
+        // }
+        // stage('Deploy') {
+        //     steps {
+        //         script {
+        //             docker.withRegistry( '', registryCredential ) {
+        //             dockerImage.push()
+        //             }
+        //         }
+        //     }
+        // }
+        // stage('Remove Unused docker image') {
+        //     steps{
+        //         sh "docker rmi $registry:$BUILD_NUMBER"
+        //     }
+        // }
         stage('Deploy Kube') {
             steps {
                 sh 'curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add -'
@@ -84,9 +84,8 @@ pipeline {
                 sh 'cp cluster-config ~/.kube/'
                 sh 'cd ~/.kube'
                 sh 'mv cluster-config config'
-                sh 'service kubelet restart'
                 // sh 'kubectl create -f Deployment.yml'
-                sh 'kubectl get pods -A'
+                sh 'kubectl get pods -A --kubeconfig=~/.kube/config'
             }
         }
     }
