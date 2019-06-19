@@ -1,5 +1,3 @@
-#!/usr/bin/env groovy
-
 pipeline {
     environment {
         registry = "luther007/jenkins-eks-automated"
