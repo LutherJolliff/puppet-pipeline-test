@@ -7,6 +7,7 @@ pipeline {
         dockerImage = ''
         AWS_ACCESS_KEY_ID     = credentials('JenkinsAWSKey')
         AWS_SECRET_ACCESS_KEY = credentials('JenkinsAWSKeySecret')
+        PATH = '/root/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
     }
 
     agent {
