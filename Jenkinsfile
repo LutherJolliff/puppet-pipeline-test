@@ -9,6 +9,7 @@ pipeline {
         AWS_SECRET_ACCESS_KEY = credentials('JenkinsAWSKeySecret')
         PATH = "/root/bin:$PATH"
         animal = "dog"
+        CAT = 'meow'
     }
 
     agent {
@@ -71,7 +72,6 @@ pipeline {
         stage('Deploy Kube') {
             environment {
                 PATH = "/root/bin:${env.PATH}"
-                animal = 'dog'
             }
             steps {
                 sh 'curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add -'
