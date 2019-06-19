@@ -85,7 +85,7 @@ pipeline {
                 sh 'cd ~/.kube'
                 sh 'mv cluster-config config'
                 // sh 'kubectl create -f Deployment.yml'
-                sh 'kubectl get pods -A --kubeconfig=~/.kube/config'
+                sh 'kubectl get pods -A --kubeconfig=/root/.kube/config'
             }
         }
     }
