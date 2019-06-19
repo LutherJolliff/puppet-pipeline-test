@@ -83,11 +83,8 @@ pipeline {
                 // sh 'printenv | grep KUBECONFIG'
                 sh 'ls'
                 sh 'cp cluster-config ~/.kube/'
-                sh 'cd ~/.kube'
-                sh 'mv cluster-config config'
-                sh 'ls'
                 // sh 'kubectl create -f Deployment.yml'
-                sh 'kubectl get pods -A --kubeconfig=/root/.kube/config'
+                sh 'kubectl get pods -A --kubeconfig=cluster-config'
             }
         }
     }
