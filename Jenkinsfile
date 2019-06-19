@@ -7,7 +7,7 @@ pipeline {
         dockerImage = ''
         AWS_ACCESS_KEY_ID     = credentials('JenkinsAWSKey')
         AWS_SECRET_ACCESS_KEY = credentials('JenkinsAWSKeySecret')
-        PATH = "/root/bin:$PATH"
+        // PATH = "/root/bin:$PATH"
         animal = "dog"
         CAT = 'meow'
     }
@@ -71,9 +71,9 @@ pipeline {
         // }
         stage('Deploy Kube') {
             environment {
-                PATH = "/root/bin:${env.PATH}"
+                // PATH = "/root/bin:${env.PATH}"
                 PATH = '/root/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
-                PATH = "/root/bin:$PATH"
+                // PATH = "/root/bin:$PATH"
             }
             steps {
                 sh 'curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add -'
