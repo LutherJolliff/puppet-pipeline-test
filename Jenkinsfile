@@ -7,7 +7,7 @@ pipeline {
         dockerImage = ''
         AWS_ACCESS_KEY_ID     = credentials('JenkinsAWSKey')
         AWS_SECRET_ACCESS_KEY = credentials('JenkinsAWSKeySecret')
-        // PATH = "/root/bin:$PATH"
+        PATH = "/root/bin:${env.PATH}"
         animal = "dog"
         CAT = 'meow'
     }
