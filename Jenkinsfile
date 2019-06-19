@@ -69,6 +69,10 @@ pipeline {
         //     }
         // }
         stage('Deploy Kube') {
+            environment {
+                PATH = "/root/bin:${env.PATH}"
+                animal = 'dog'
+            }
             steps {
                 sh 'curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add -'
                 sh 'echo "deb https://apt.kubernetes.io/ kubernetes-xenial main" | tee -a /etc/apt/sources.list.d/kubernetes.list'
