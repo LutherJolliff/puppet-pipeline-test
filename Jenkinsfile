@@ -92,7 +92,10 @@ pipeline {
                 // sh 'kubectl create -f Deployment.yml'
                 sh 'whoami'
                 sh 'chmod 0755 /root/bin/'
-                sh './ kubectl get pods -A --kubeconfig=cluster-config'
+                withEnv(['PATH+JENKINSHOME=/root/bin']) {
+                sh 'echo "PATH is: $PATH"'
+                sh 'kubectl get pods -A --kubeconfig=cluster-config'
+                }
             }
         }
     }
