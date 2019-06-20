@@ -6,8 +6,6 @@ pipeline {
         AWS_ACCESS_KEY_ID     = credentials('JenkinsAWSKey')
         AWS_SECRET_ACCESS_KEY = credentials('JenkinsAWSKeySecret')
         PATH = "/root/bin:${env.PATH}"
-        animal = "dog"
-        CAT = 'meow'
     }
 
     agent {
@@ -34,45 +32,41 @@ pipeline {
                 sh 'apt install -y ./google-chrome*.deb'
             }
         }
-        // stage('Dependencies') {
-        //     steps {
-        //         echo 'Installing...'
-        //         sh 'npm install'
-        //     }
-        // }
-        // stage('Test') {
-        //     steps {
-        //         echo 'Testing...'
-        //         sh 'npm test'
-        //     }
-        // }
-        // stage('Build') {
-        //     steps {
-        //         script {
-        //             dockerImage = docker.build registry + ":$BUILD_NUMBER"
-        //         }
-        //     }
-        // }
-        // stage('Deploy') {
-        //     steps {
-        //         script {
-        //             docker.withRegistry( '', registryCredential ) {
-        //             dockerImage.push()
-        //             }
-        //         }
-        //     }
-        // }
-        // stage('Remove Unused docker image') {
-        //     steps{
-        //         sh "docker rmi $registry:$BUILD_NUMBER"
-        //     }
-        // }
-        stage('Deploy Kube') {
-            environment {
-                // PATH = "/root/bin:${env.PATH}"
-                // PATH = '/root/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
-                PATH = "/root/bin:$PATH"
+        stage('Dependencies') {
+            steps {
+                echo 'Installing...'
+                sh 'npm install'
             }
+        }
+        stage('Test') {
+            steps {
+                echo 'Testing...'
+                sh 'npm test'
+            }
+        }
+        stage('Build') {
+            steps {
+                script {
+                    dockerImage = docker.build registry + ":$BUILD_NUMBER"
+                }
+            }
+        }
+        stage('Deploy') {
+            steps {
+                script {
+                    docker.withRegistry( '', registryCredential ) {
+                    dockerImage.push()
+                    dockerImage.push('latest')
+                    }
+                }
+            }
+        }
+        stage('Remove Unused docker image') {
+            steps{
+                sh "docker rmi $registry:$BUILD_NUMBER"
+            }
+        }
+        stage('Deploy Kube') {
             steps {
                 sh 'curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add -'
                 sh 'echo "deb https://apt.kubernetes.io/ kubernetes-xenial main" | tee -a /etc/apt/sources.list.d/kubernetes.list'
@@ -87,14 +81,9 @@ pipeline {
                 sh "export AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID"
                 sh "export AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY"
                 sh 'printenv'
-                sh "echo ${env.PATH}"
                 sh 'cp cluster-config ~/.kube/'
-                // sh 'kubectl create -f Deployment.yml'
-                sh 'whoami'
-                // sh 'chmod 0755 /root/bin/'
-                // withEnv(['PATH+JENKINSHOME=/root/bin']) {
-                sh 'echo "PATH is: $PATH"'
-                sh 'kubectl get pods -A --kubeconfig=cluster-config'
+                sh 'kubectl create -f Deployment.yml'
+                sh ''
             }
         }
     }

@@ -2,6 +2,8 @@ apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   name: jenkins-eks-automated
+  labels:
+    app: mike
   namespace: default
 spec:
   replicas: 1
@@ -13,16 +15,15 @@ spec:
       maxSurge: 1
       maxUnavailable: 1
   template:
+    metadata:
+      labels:
+        app: mike
     spec:
       containers:
-
-        -
-          name: luther007/jenkins-eks-automated
-          image: latest
+        - name: mike1
+          image: luther007/jenkins-eks-automated:latest
           ports:
-            -
-              name: 'expose port 4200'
-              containerPort: 4200
+            - containerPort: 4200
               hostPort: 4200
               protocol: TCP
       volumes: []

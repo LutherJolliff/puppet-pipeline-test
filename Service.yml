@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: mike-load-balancer
+spec:
+  type: LoadBalancer
+  selector:
+    app: mike
+  ports:
+    - protocol: TCP
+      port: 4200
+      targetPort: 4200
+      name: http
