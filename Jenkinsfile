@@ -90,7 +90,7 @@ pipeline {
                 sh "echo ${env.PATH}"
                 sh 'cp cluster-config ~/.kube/'
                 // sh 'kubectl create -f Deployment.yml'
-                sh 'kubectl get pods -A --kubeconfig=cluster-config'
+                sh '/root/bin/ kubectl get pods -A --kubeconfig=cluster-config'
             }
         }
     }
