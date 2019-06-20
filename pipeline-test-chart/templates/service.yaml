@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "pipeline-test-chart.fullname" . }}
+  labels:
+    app.kubernetes.io/name: {{ include "pipeline-test-chart.name" . }}
+    helm.sh/chart: {{ include "pipeline-test-chart.chart" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+spec:
+  type: {{ .Values.service.type }}
+  ports:
+    - port: {{ .Values.service.httpPort }}
+      targetPort: http
+      protocol: TCP
+      name: http
+    - port: 4200
+      targetPort: 4200
+      protocol: TCP
+  selector:
+    app.kubernetes.io/name: {{ include "pipeline-test-chart.name" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
