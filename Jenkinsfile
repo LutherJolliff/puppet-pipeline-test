@@ -82,8 +82,7 @@ pipeline {
                 sh "export AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY"
                 sh 'printenv'
                 sh 'cp cluster-config ~/.kube/'
-                sh 'kubectl create -f Deployment.yml'
-                sh ''
+                sh "kubectl set image deployment/jenkins-eks-automated mike1=$dockerImage"
             }
         }
     }
