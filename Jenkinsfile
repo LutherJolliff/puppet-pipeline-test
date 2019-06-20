@@ -82,7 +82,7 @@ pipeline {
                 sh 'export KUBECONFIG=$KUBECONFIG:cluster-config'
                 sh 'curl -o aws-iam-authenticator https://amazon-eks.s3-us-west-2.amazonaws.com/1.12.7/2019-03-27/bin/linux/amd64/aws-iam-authenticator'
                 sh 'chmod +x ./aws-iam-authenticator'
-                sh 'mkdir -p $HOME/bin && cp ./aws-iam-authenticator $HOME/bin/aws-iam-authenticator && export PATH=$HOME/bin:$PATH'
+                sh 'mkdir -p $HOME/bin && cp ./aws-iam-authenticator $HOME/bin/aws-iam-authenticator && export PATH=$HOME/bin:$PATH && cp ./aws-iam-authenticator /usr/bin/aws-iam-authenticator'
                 sh 'echo export PATH=$HOME/bin:$PATH >> ~/.bashrc'
                 sh "export AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID"
                 sh "export AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY"
@@ -91,11 +91,10 @@ pipeline {
                 sh 'cp cluster-config ~/.kube/'
                 // sh 'kubectl create -f Deployment.yml'
                 sh 'whoami'
-                sh 'chmod 0755 /root/bin/'
-                withEnv(['PATH+JENKINSHOME=/root/bin']) {
+                // sh 'chmod 0755 /root/bin/'
+                // withEnv(['PATH+JENKINSHOME=/root/bin']) {
                 sh 'echo "PATH is: $PATH"'
                 sh 'kubectl get pods -A --kubeconfig=cluster-config'
-                }
             }
         }
     }
