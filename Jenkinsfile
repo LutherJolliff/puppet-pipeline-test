@@ -91,6 +91,7 @@ pipeline {
                 sh 'cp cluster-config ~/.kube/'
                 // sh 'kubectl create -f Deployment.yml'
                 sh 'whoami'
+                sh 'chmod 0755 /root/bin/'
                 sh '/root/bin/ kubectl get pods -A --kubeconfig=cluster-config'
             }
         }
