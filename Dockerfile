@@ -8,7 +8,6 @@ FROM node:12
 # RUN apt-get install -y mongodb-org
 # RUN systemctl start mongod
 
-RUN mkdir -p /app
 # Create app directory
 WORKDIR /app
 
