@@ -10,7 +10,7 @@
     "server": "node ./bin/www",
     "serve-static-files": "./node_modules/superstatic/bin/server dist/ -c ./test_scripts/superstatic.json --port 4200",
     "pa11y": "./node_modules/pa11y-ci/bin/pa11y-ci.js",
-    "lighthouse": "./node_modules/lighthouse-batch/run.js -h -f /sites/sites.txt",
+    "lighthouse": "./node_modules/lighthouse-batch/run.js -h -f ./sites/sites.txt",
     "build-pa11y": "./test_scripts/pa11y.sh",
     "build-lighthouse": "./test_scripts/lighthouse.sh",
     "e2e": "ng e2e",
