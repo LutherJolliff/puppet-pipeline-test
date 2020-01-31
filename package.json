@@ -8,7 +8,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "server": "node ./bin/www",
-    "serve-static-files": "./node_modules/superstatic/bin/server dist/ -c ./development-configurations/superstatic.json --port 4200",
+    "serve-static-files": "./node_modules/superstatic/bin/server dist/ -c ./test_scripts/superstatic.json --port 4200",
     "pa11y": "./node_modules/pa11y-ci/bin/pa11y-ci.js",
     "build-pa11y": "./test_scripts/pa11y.sh",
     "e2e": "ng e2e",
