@@ -48,17 +48,17 @@ pipeline {
                 sh 'npm install'
             }
         }
-        stage('Sonarqube Analysis') {
-            environment {
-                scannerHome = tool 'Sonarqube'
-            }            
-            steps {
-                withSonarQubeEnv('AWS-Sonarqube') {
-                    // sh '/var/jenkins_home/tools/hudson.plugins.sonar.SonarRunnerInstallation/Sonarqube/bin/sonar-scanner'
-                    sh "${scannerHome}/bin/sonar-scanner"
-                }
-            }
-        }
+        // stage('Sonarqube Analysis') {
+        //     environment {
+        //         scannerHome = tool 'Sonarqube'
+        //     }            
+        //     steps {
+        //         withSonarQubeEnv('AWS-Sonarqube') {
+        //             // sh '/var/jenkins_home/tools/hudson.plugins.sonar.SonarRunnerInstallation/Sonarqube/bin/sonar-scanner'
+        //             sh "${scannerHome}/bin/sonar-scanner"
+        //         }
+        //     }
+        // }
         stage('Pa11y') {
             agent {
                 docker {
