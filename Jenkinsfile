@@ -72,6 +72,12 @@ pipeline {
         }
         //  Pretend this is a Deploy step
         stage('Lighthouse') {
+            agent {
+                docker {
+                    image 'luther007/cynerge_images:latest'
+                    args '-u root'
+                }
+            }
             steps {
                 // sh 'npm install -g lighthouse-batch'
                 sh 'npm run build-lighthouse'
