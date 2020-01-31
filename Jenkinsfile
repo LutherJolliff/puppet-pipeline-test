@@ -73,8 +73,9 @@ pipeline {
         //  Pretend this is a Deploy step
         stage('Lighthouse') {
             steps {
-                sh 'npm install -g lighthouse-batch'
-                sh 'lighthouse-batch -h -s https://www.google.com,https://www.cynerge.com'
+                // sh 'npm install -g lighthouse-batch'
+                sh 'npm run build-lighthouse'
+                // sh 'lighthouse-batch -h -s https://www.google.com,https://www.cynerge.com'
             }
             post {
                 always {

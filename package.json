@@ -10,7 +10,9 @@
     "server": "node ./bin/www",
     "serve-static-files": "./node_modules/superstatic/bin/server dist/ -c ./test_scripts/superstatic.json --port 4200",
     "pa11y": "./node_modules/pa11y-ci/bin/pa11y-ci.js",
+    "lighthouse": "./node_modules/lighthouse-batch/run.js -h -f /sites/sites.txt",
     "build-pa11y": "./test_scripts/pa11y.sh",
+    "build-lighthouse": "./test_scripts/lighthouse.sh",
     "e2e": "ng e2e",
     "tslint-check": "tslint-config-prettier-check ./tslint.json"
   },
@@ -33,6 +35,7 @@
     "express": "^4.16.4",
     "hammerjs": "^2.0.8",
     "http-errors": "^1.7.2",
+    "lighthouse-batch": "^5.0.1",
     "mongoose": "^5.4.13",
     "morgan": "^1.9.1",
     "pa11y": "~5.2.0",
