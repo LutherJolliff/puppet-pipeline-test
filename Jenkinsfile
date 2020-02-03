@@ -30,11 +30,11 @@ pipeline {
                 // sh 'apt install -y ./google-chrome*.deb'
         //     }
         // }
-        // stage('SCM') {
-        //     steps {
-        //         git url: 'https://github.com/LutherJolliff/puppet-pipeline-test.git'
-        //     }
-        // }
+        stage('User') {
+            steps {
+                sh 'whoami'
+            }
+        }
         stage('Dependencies') {
             agent {
                 docker {
