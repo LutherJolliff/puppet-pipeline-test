@@ -90,7 +90,7 @@ pipeline {
                         alwaysLinkToLastBuild: false,
                         keepAll: false,
                         reportDir: './report/lighthouse',
-                        reportFiles: 'www_cynerge_com.report.html, www_google_com.report.html',
+                        reportFiles: 'localhost_4200.report.html',
                         reportName: "Lighthouse"
                     ])
                 }
