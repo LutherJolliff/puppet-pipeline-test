@@ -57,8 +57,6 @@ pipeline {
             }
             steps {
                 script {
-                    def tfHome = tool name: 'terraform-tool'
-                    env.PATH = "${tfHome}:${env.PATH}"
                     sh 'ls'
                     dir ('terraform') {
                         sh '''
