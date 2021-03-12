@@ -6,10 +6,15 @@ pipeline {
         ROLE_ARN = credentials('tf-role-arn')
     }
 
+    // agent {
+    //     docker {
+    //         image 'luther007/cynerge_images:latest'
+    //         args '-u root'
+    //     }
+    // }
     agent {
-        docker {
-            image 'luther007/cynerge_images:latest'
-            args '-u root'
+        node {
+            label 'master'
         }
     }
 
