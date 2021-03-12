@@ -56,13 +56,18 @@ pipeline {
                 }
             }
             steps {
-                sh 'ls'
-                dir ('terraform') {
-                    sh '''
-                        terraform init
-                        terraform plan -input=false
-                        terraform apply --auto-approve
-                    '''
+                script {
+                    def tfHome = tool name: 'terraform-tool'
+                    env.PATH = "${tfHome}:${env.PATH}"
+                    sh 'ls'
+                    dir ('terraform') {
+                        sh '''
+                            terraform --version
+                            terraform init
+                            terraform plan -input=false
+                            terraform apply --auto-approve
+                        '''
+                    }
                 }
             }
         }
