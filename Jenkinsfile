@@ -1,7 +1,7 @@
 pipeline {
     environment {
-        AWS_ACCESS_KEY_ID     = credentials('JenkinsAWSKey')
-        AWS_SECRET_ACCESS_KEY = credentials('JenkinsAWSKeySecret')
+        // AWS_ACCESS_KEY_ID     = credentials('JenkinsAWSKey')
+        // AWS_SECRET_ACCESS_KEY = credentials('JenkinsAWSKeySecret')
         TF_VAR_EB_APP_NAME = "${env.JOB_NAME}"
         ROLE_ARN = credentials('tf-role-arn')
     }
@@ -16,6 +16,7 @@ pipeline {
     stages {
         stage('dependencies') {
             steps {
+                sh 'whoami'
                 echo 'Installing...'
                 // sh 'npm ci'
             }
