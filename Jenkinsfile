@@ -44,7 +44,7 @@ pipeline {
                 sh 'rm terraform -rf; mkdir terraform'
                 dir ('terraform') {
                     git branch: 'cf_testing',
-                        credentialsId: 'luther-github',
+                        credentialsId: 'luther-github-ssh',
                         url: 'git@github.com:cynerge-consulting/non-containerized-pipeline-tf.git'
                 }
             }
