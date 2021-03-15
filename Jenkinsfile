@@ -3,7 +3,7 @@ pipeline {
         // AWS_ACCESS_KEY_ID     = credentials('JenkinsAWSKey')
         // AWS_SECRET_ACCESS_KEY = credentials('JenkinsAWSKeySecret')
         TF_VAR_EB_APP_NAME = "${env.JOB_NAME}"
-        ROLE_ARN = credentials('tf-role-arn')
+        TF_VAR_ROLE_ARN = credentials('tf-role-arn')
     }
 
     // agent {
