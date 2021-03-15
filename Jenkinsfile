@@ -75,13 +75,13 @@ pipeline {
             when {
                 branch 'cf_test'
             }
-            // agent {
-            //     docker {
-            //         image 'cynergeconsulting/aws-cli:latest'
-            //         args '-u root'
-            //         alwaysPull true
-            //     }
-            // }
+            agent {
+                docker {
+                    image 'cynergeconsulting/aws-cli:latest'
+                    args '-u root'
+                    alwaysPull true
+                }
+            }
             steps {
                 sh 'env | grep AWS'
                 sh 'which eb'
