@@ -1,5 +1,5 @@
 global:
-  application_name: ${TF_VAR_eb_app_name}
+  application_name: sampleApp
   default_ec2_keyname: gov-ec2
   default_platform: 64bit Amazon Linux 2 v5.3.0 running Node.js 12
   default_region: us-gov-west-1
