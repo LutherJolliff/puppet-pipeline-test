@@ -77,6 +77,7 @@ pipeline {
             }
             steps {
                 sh '''
+                    echo 'export PATH="/root/.ebcli-virtual-env/executables:$PATH"' >> ~/.bash_profile && source ~/.bash_profile
                     eb deploy dev
                     sleep 5
                     aws elasticbeanstalk describe-environments --environment-names dev --query "Environments[*].CNAME" --output text
@@ -89,6 +90,7 @@ pipeline {
             }
             steps {
                 sh '''
+                    echo 'export PATH="/root/.ebcli-virtual-env/executables:$PATH"' >> ~/.bash_profile && source ~/.bash_profile
                     eb deploy staging
                     sleep 5
                     aws elasticbeanstalk describe-environments --environment-names staging --query "Environments[*].CNAME" --output text
@@ -101,6 +103,7 @@ pipeline {
             }
             steps {
                 sh '''
+                    echo 'export PATH="/root/.ebcli-virtual-env/executables:$PATH"' >> ~/.bash_profile && source ~/.bash_profile
                     eb deploy prod
                     sleep 5
                     aws elasticbeanstalk describe-environments --environment-names prod --query "Environments[*].CNAME" --output text
