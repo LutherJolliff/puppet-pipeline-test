@@ -85,6 +85,7 @@ pipeline {
             steps {
                 sh '''
                     whoami
+                    env
                     eb deploy development
                     sleep 5
                     aws elasticbeanstalk describe-environments --environment-names dev --query "Environments[*].CNAME" --output text
