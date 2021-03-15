@@ -1,9 +1,6 @@
-branch-defaults:
-  master:
-    environment: $CIRCLE_BRANCH
 global:
-  application_name: mike-v2-demo
+  application_name: $TF_VAR_eb_app_name
   default_ec2_keyname: AWS EC2
-  default_platform: 64bit Amazon Linux 2018.03 v4.9.2 running Node.js
-  default_region: us-east-1
+  default_platform: 64bit Amazon Linux 2 v5.3.0 running Node.js 12
+  default_region: us-gov-west-1
   sc: git
