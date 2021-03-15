@@ -2,7 +2,7 @@ pipeline {
     environment {
         // AWS_ACCESS_KEY_ID     = credentials('JenkinsAWSKey')
         // AWS_SECRET_ACCESS_KEY = credentials('JenkinsAWSKeySecret')
-        TF_VAR_eb_app_name = "${env.JOB_NAME}"
+        TF_VAR_eb_app_name = sampleApp
         TF_VAR_role_arn = credentials('tf-role-arn')
         AWS_ACCESS_KEY_ID = credentials('tf_aws_access_key_id')
         AWS_SECRET_ACCESS_KEY = credentials('tf_secret_access_key_id')
@@ -106,11 +106,6 @@ pipeline {
                     docker run --rm -it -v ~/.aws:/root/.aws amazon/aws-cli elasticbeanstalk describe-environments --environment-names prod --query "Environments[*].CNAME" --output text
                 '''
             }
-        }
-    }
-    post { 
-        always { 
-            cleanWs()
         }
     }
 }
