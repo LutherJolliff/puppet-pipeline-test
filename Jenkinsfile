@@ -90,7 +90,7 @@ pipeline {
                 sh 'aws s3 ls'
                 sh 'eb deploy development'
                 sh 'sleep 5'
-                sh 'aws elasticbeanstalk describe-environments --environment-names dev --query "Environments[*].CNAME" --output text'
+                sh 'aws elasticbeanstalk describe-environments --environment-names development --query "Environments[*].CNAME" --output text'
             }
         }
         stage('staging-deploy') {
@@ -115,7 +115,7 @@ pipeline {
                     echo 'export PATH="/root/.ebcli-virtual-env/executables:$PATH"' >> ~/.bash_profile
                     eb deploy production
                     sleep 5
-                    aws elasticbeanstalk describe-environments --environment-names prod --query "Environments[*].CNAME" --output text
+                    aws elasticbeanstalk describe-environments --environment-names production --query "Environments[*].CNAME" --output text
                 '''
             }
         }
