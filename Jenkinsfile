@@ -77,9 +77,9 @@ pipeline {
             }
             steps {
                 sh '''
-                    docker run --rm -v ~/.aws:/root/.aws amazon/aws-cli eb deploy dev
+                    eb deploy dev
                     sleep 5
-                    docker run --rm -v ~/.aws:/root/.aws amazon/aws-cli elasticbeanstalk describe-environments --environment-names dev --query "Environments[*].CNAME" --output text
+                    aws elasticbeanstalk describe-environments --environment-names dev --query "Environments[*].CNAME" --output text
                 '''
             }
         }
@@ -89,9 +89,9 @@ pipeline {
             }
             steps {
                 sh '''
-                    docker run --rm -v ~/.aws:/root/.aws amazon/aws-cli eb deploy staging
+                    eb deploy staging
                     sleep 5
-                    docker run --rm -v ~/.aws:/root/.aws amazon/aws-cli elasticbeanstalk describe-environments --environment-names staging --query "Environments[*].CNAME" --output text
+                    aws elasticbeanstalk describe-environments --environment-names staging --query "Environments[*].CNAME" --output text
                 '''
             }
         }
@@ -101,9 +101,9 @@ pipeline {
             }
             steps {
                 sh '''
-                    docker run --rm -v ~/.aws:/root/.aws amazon/aws-cli eb deploy prod
+                    eb deploy prod
                     sleep 5
-                    docker run --rm -v ~/.aws:/root/.aws amazon/aws-cli elasticbeanstalk describe-environments --environment-names prod --query "Environments[*].CNAME" --output text
+                    aws elasticbeanstalk describe-environments --environment-names prod --query "Environments[*].CNAME" --output text
                 '''
             }
         }
