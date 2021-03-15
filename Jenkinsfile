@@ -85,7 +85,7 @@ pipeline {
             steps {
                 sh 'env | grep AWS'
                 sh 'which eb'
-                sh 'aws sts get-caller-identity'
+                sh 'aws s3 ls'
                 sh 'eb deploy development'
                 sh 'sleep 5'
                 sh 'aws elasticbeanstalk describe-environments --environment-names dev --query "Environments[*].CNAME" --output text'
