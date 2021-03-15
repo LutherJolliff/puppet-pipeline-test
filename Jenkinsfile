@@ -77,7 +77,7 @@ pipeline {
             }
             steps {
                 sh '''
-                    echo 'export PATH="/root/.ebcli-virtual-env/executables:$PATH"' >> ~/.bash_profile
+                    whoami
                     eb deploy dev
                     sleep 5
                     aws elasticbeanstalk describe-environments --environment-names dev --query "Environments[*].CNAME" --output text
