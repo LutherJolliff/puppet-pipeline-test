@@ -78,7 +78,7 @@ pipeline {
             agent {
                 docker {
                     image 'cynergeconsulting/aws-cli:latest'
-                    user 'root'
+                    args '-u root'
                     alwaysPull true
                 }
             }
