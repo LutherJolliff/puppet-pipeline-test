@@ -75,6 +75,12 @@ pipeline {
             when {
                 branch 'cf_test'
             }
+            agent {
+                docker {
+                    image 'cynergeconsulting/aws-cli:latest'
+                    alwaysPull true
+                }
+            }
             steps {
                 sh '''
                     whoami
