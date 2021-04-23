@@ -65,7 +65,7 @@ pipeline {
                             terraform --version
                             terraform init
                             terraform plan -input=false
-                            terraform apply --auto-approve
+                            terraform destroy --auto-approve
                         '''
                     }
                 }
